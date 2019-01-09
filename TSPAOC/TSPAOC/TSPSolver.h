@@ -18,6 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TSPSolver : NSObject
 
 /**
+ Solver uses 'TSPCityProtocol' to build distance matrix. You can provide a matrix if you already have one
+ so that 'quantityToCity:'(from TSPCityProtocol) won't be called
+ */
+@property (strong, nonatomic) NSArray<NSArray<NSNumber *> *> *distanceMatrix;
+
+/**
  Perform optimization with a list of cities(confirm to 'TSPCityProtocol' protocol)
  The order of cities to be visited can not be controled. The maximum tried time is 2,000
  */
@@ -42,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Perform optimization with a list of cities(confirm to 'TSPCityProtocol' protocol)
  You can optionally provide start or end point. The maximum tried time is 2,000
-
+ 
  @param cities list of cities
  @param startPtIdx an index within boundary(cities) specify a start point, pass -1 if no requirement
  @param endPtIdx an index within boundary(cities) specify a end point, pass -1 if no requirement, pass same value as 'startPtIdx' for a round trip

@@ -6,8 +6,8 @@
 //  Copyright © 2018 The Casey Group. All rights reserved.
 //
 
-#import "TSPSolver.h"
 #import <UIKit/UIKit.h>
+#import "TSPSolver.h"
 
 @implementation TSPSolver
 
@@ -57,7 +57,7 @@
                                       complete:^(NSArray<NSNumber *> * _Nonnull idxInOrgAry, double totalQuantity) {
                                           NSArray *reversedAry = [[idxInOrgAry reverseObjectEnumerator] allObjects];
                                           completeHandler(reversedAry, totalQuantity);
-        }];
+                                      }];
         return;
     }
     
@@ -98,7 +98,10 @@
     }
     else
     {
-        NSMutableArray<NSMutableArray<NSNumber *> *> *distanceMatrix = [self buildDistanceMatrix:cities];
+        // build one, if don't already have a distance matrix [yufei Dec 20'18@16:45]
+        if (!self.distanceMatrix) {
+            self.distanceMatrix = [self buildDistanceMatrix:cities];
+        }
         __block NSMutableArray *bestPath = [NSMutableArray arrayWithCapacity:numOfCity]; // 记录最近的那条路线
         for (NSInteger idx = 0; idx < numOfCity; idx++) {
             [bestPath addObject:@(-1)];
@@ -131,7 +134,7 @@
                 for (j = 0; j < numOfCity; j++) {
                     pheTbl[i][j] = initPheVal; // 信息素初始化
                     if(i != j) { // 期望值,与距离成反比
-                        itaTbl[i][j] = 100.0 / [distanceMatrix[i][j] doubleValue];
+                        itaTbl[i][j] = 100.0 / [self.distanceMatrix[i][j] doubleValue];
                     }
                 }
             }
@@ -220,7 +223,7 @@
                 // 计算本次中的最短路径
                 for(k = 0; k < numOfAnt; k++) {
                     // 蚂蚁k所走的路线的总长度
-                    solutions[k] = [self totalPathDistanceWithMatrix:distanceMatrix path:antPath[k] isRoundTrip:isRound];
+                    solutions[k] = [self totalPathDistanceWithMatrix:self.distanceMatrix path:antPath[k] isRoundTrip:isRound];
                     if(solutions[k] < bestSolution) {
                         preBestSolution = bestSolution;
                         bestSolution = solutions[k];
@@ -253,7 +256,7 @@
                 
                 sameResTryCnt += (preBestSolution == bestSolution ? 1 : 0);
                 preBestSolution = bestSolution;
-                NSLog(@"%d -> %f(pre: %f)", loopCnt, bestSolution, preBestSolution);
+                // NSLog(@"%d -> %f(pre: %f)", loopCnt, bestSolution, preBestSolution);
             }
             
             // call complete handler on main thread
@@ -264,7 +267,7 @@
     }
 }
 
-- (NSMutableArray<NSMutableArray<NSNumber *> *> *)buildDistanceMatrix:(NSArray<id<TSPCityProtocol>> *)cities {
+- (NSArray<NSArray<NSNumber *> *> *)buildDistanceMatrix:(NSArray<id<TSPCityProtocol>> *)cities {
     // build a distance matrix using given cities [yufei Dec 18'18@11:39]
     NSMutableArray<NSMutableArray<NSNumber *> *> *distanceMatrix = [NSMutableArray array];
     for (NSInteger row = 0; row < cities.count; row++) {
@@ -281,7 +284,7 @@
     return distanceMatrix;
 }
 
-- (double)totalPathDistanceWithMatrix:(NSMutableArray<NSMutableArray<NSNumber *> *> *)matrix path:(int *)p isRoundTrip:(BOOL)isRoundTrip {
+- (double)totalPathDistanceWithMatrix:(NSArray<NSArray<NSNumber *> *> *)matrix path:(int *)p isRoundTrip:(BOOL)isRoundTrip {
     // calculate the total distance by given path('p' as int[]), distance can be found from 'matrix' [yufei Dec 18'18@11:51]
     double result = 0;
     int i = 0;
