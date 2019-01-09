@@ -13,6 +13,8 @@
 		0CC0FE6521C84C3900E01406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CC0FE6421C84C3900E01406 /* Assets.xcassets */; };
 		0CC0FE6821C84C3900E01406 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CC0FE6621C84C3900E01406 /* LaunchScreen.storyboard */; };
 		0CC0FE6B21C84C3900E01406 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC0FE6A21C84C3900E01406 /* main.m */; };
+		0CC0FE8021C8B17300E01406 /* TSPSolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC0FE7F21C8B17300E01406 /* TSPSolver.m */; };
+		0CC0FE8521CC0E0500E01406 /* PathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC0FE8421CC0E0500E01406 /* PathView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		0CC0FE6721C84C3900E01406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0CC0FE6921C84C3900E01406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CC0FE6A21C84C3900E01406 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0CC0FE7E21C8B17300E01406 /* TSPSolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSPSolver.h; sourceTree = "<group>"; };
+		0CC0FE7F21C8B17300E01406 /* TSPSolver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSPSolver.m; sourceTree = "<group>"; };
+		0CC0FE8321CC0E0500E01406 /* PathView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathView.h; sourceTree = "<group>"; };
+		0CC0FE8421CC0E0500E01406 /* PathView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,15 +64,27 @@
 		0CC0FE5A21C84C3700E01406 /* TSPAOC */ = {
 			isa = PBXGroup;
 			children = (
+				0CC0FE7121C84C5900E01406 /* TSPAOC */,
 				0CC0FE5B21C84C3700E01406 /* AppDelegate.h */,
 				0CC0FE5C21C84C3700E01406 /* AppDelegate.m */,
 				0CC0FE5E21C84C3700E01406 /* ViewController.h */,
 				0CC0FE5F21C84C3700E01406 /* ViewController.m */,
+				0CC0FE8321CC0E0500E01406 /* PathView.h */,
+				0CC0FE8421CC0E0500E01406 /* PathView.m */,
 				0CC0FE6121C84C3700E01406 /* Main.storyboard */,
 				0CC0FE6421C84C3900E01406 /* Assets.xcassets */,
 				0CC0FE6621C84C3900E01406 /* LaunchScreen.storyboard */,
 				0CC0FE6921C84C3900E01406 /* Info.plist */,
 				0CC0FE6A21C84C3900E01406 /* main.m */,
+			);
+			path = TSPAOC;
+			sourceTree = "<group>";
+		};
+		0CC0FE7121C84C5900E01406 /* TSPAOC */ = {
+			isa = PBXGroup;
+			children = (
+				0CC0FE7E21C8B17300E01406 /* TSPSolver.h */,
+				0CC0FE7F21C8B17300E01406 /* TSPSolver.m */,
 			);
 			path = TSPAOC;
 			sourceTree = "<group>";
@@ -142,7 +160,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CC0FE6021C84C3700E01406 /* ViewController.m in Sources */,
+				0CC0FE8021C8B17300E01406 /* TSPSolver.m in Sources */,
 				0CC0FE6B21C84C3900E01406 /* main.m in Sources */,
+				0CC0FE8521CC0E0500E01406 /* PathView.m in Sources */,
 				0CC0FE5D21C84C3700E01406 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
